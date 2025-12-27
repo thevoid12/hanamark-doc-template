@@ -1,0 +1,3 @@
+- documentation of hanamark is generated with hanamark
+- so I thought why not make this public which can be a reference example to customize your own blog
+- this repo has the exact setup on how I built hanamark blog using hanamark which includes templates,source_md,assets,config....
