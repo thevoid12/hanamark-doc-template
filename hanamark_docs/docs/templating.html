@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hanamark - A fast, minimal, and flexible static site generator written in Go">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <title>Template Basics | Hanamark Docs</title>
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+        <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <a href="/index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="var(--accent)"/>
+          <path d="M8 10h6v12H8V10zm10 0h6v12h-6V10z" fill="white"/>
+          <path d="M11 16h10" stroke="white" stroke-width="2"/>
+        </svg>
+        Hanamark
+      </a>
+      <nav class="header-nav">
+        <a href="/docs/getting-started.html">Docs</a>
+        <a href="/docs/examples.html">Examples</a>
+        <a href="/llm-docs.html">LLM Docs</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <a href="https://github.com/thevoid12/hanamark" class="github-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+  <div class="docs-layout">
+    <div class="sidebar-overlay" onclick="toggleMobileMenu()"></div>
+    <aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Getting Started</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/getting-started.html">Introduction</a></li>
+      <li><a href="/docs/installation.html">Installation</a></li>
+      <li><a href="/docs/quick-start.html">Quick Start</a></li>
+      <li><a href="/docs/project-structure.html">Project Structure</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Core Concepts</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/configuration.html">Configuration</a></li>
+      <li><a href="/docs/content-organization.html">Content Organization</a></li>
+      <li><a href="/docs/front-matter.html">Front Matter</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Templating</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/templating.html">Template Basics</a></li>
+      <li><a href="/docs/template-variables.html">Template Variables</a></li>
+      <li><a href="/docs/custom-templates.html">Custom Templates</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Features</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/tags.html">Tags</a></li>
+      <li><a href="/docs/assets.html">Assets & Static Files</a></li>
+      <li><a href="/docs/rss.html">RSS Feed</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Reference</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/rules-and-constraints.html">Rules & Constraints</a></li>
+      <li><a href="/docs/commands.html">CLI Commands</a></li>
+      <li><a href="/docs/examples.html">Examples</a></li>
+      <li><a href="/llm-docs.html">LLM-Friendly Docs</a></li>
+    </ul>
+  </div>
+</aside>
+
+
+    <main class="main-content">
+      <div class="content-wrapper">
+        <article class="doc-content">
+  <h1 id="template-basics">Template Basics</h1>
+
+<p>Hanamark uses Go&rsquo;s <code>html/template</code> package with a hierarchical template system.</p>
+
+<h2 id="understanding-single-html-vs-list-html">Understanding single.html vs list.html</h2>
+
+<p>This is the most important concept in Hanamark templating:</p>
+
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>What It Does</th>
+<th>When It&rsquo;s Used</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>single.html</code></td>
+<td>Renders individual content pages</td>
+<td>Used for every <code>.md</code> file</td>
+</tr>
+
+<tr>
+<td><code>list.html</code></td>
+<td>Renders index/listing pages</td>
+<td>Used for sections with <code>_index.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Think of it this way:</strong></p>
+
+<ul>
+<li><code>single.html</code> = Template for reading a single article/page</li>
+<li><code>list.html</code> = Template for browsing a collection of articles</li>
+</ul>
+
+<h3 id="example">Example</h3>
+
+<pre><code>blog/
+├── _index.md      -&gt; Uses list.html   -&gt; blog/index.html
+├── post-1.md      -&gt; Uses single.html -&gt; blog/post-1.html
+└── post-2.md      -&gt; Uses single.html -&gt; blog/post-2.html
+</code></pre>
+
+<h2 id="system-files">System Files</h2>
+
+<p>Files starting with <code>_</code> are system files used by Hanamark. <strong>Do not delete them.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+<th>Can You Empty It?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>_base.html</code></td>
+<td>Base layout wrapper for all pages</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>_header.html</code></td>
+<td>Site header/navigation</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td><code>_footer.html</code></td>
+<td>Site footer</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td><code>_index.html</code></td>
+<td>Custom homepage template (optional)</td>
+<td>Optional</td>
+</tr>
+
+<tr>
+<td><code>_index.md</code></td>
+<td>Section configuration (in content folders)</td>
+<td>Yes, but keep the file</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="the-base-html-template-global-layout">The _base.html Template (Global Layout)</h2>
+
+<p><code>_base.html</code> is the <strong>master template</strong> that wraps every page on your site. It is <strong>mandatory</strong> and must exist. Use it for:</p>
+
+<ul>
+<li><strong>HTML document structure</strong> (<code>&lt;!DOCTYPE&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>)</li>
+<li><strong>Global CSS/JS</strong> - stylesheets and scripts needed on every page</li>
+<li><strong>Meta tags</strong> - charset, viewport, SEO tags</li>
+<li><strong>Favicon</strong> - site icon</li>
+<li><strong>Common layout</strong> - header, footer, navigation</li>
+</ul>
+
+<p>Everything in <code>_base.html</code> appears on <strong>every single page</strong> of your site.</p>
+
+<h3 id="why-base-html-is-mandatory">Why _base.html is Mandatory</h3>
+
+<ol>
+<li><strong>Consistent structure</strong> - Ensures all pages have proper HTML document structure</li>
+<li><strong>DRY principle</strong> - Write common elements once, use everywhere</li>
+<li><strong>Template inheritance</strong> - Content templates inject into the <code>{{ block &quot;main&quot; . }}</code> placeholder</li>
+<li><strong>Partials support</strong> - Header and footer are included automatically</li>
+</ol>
+
+<h3 id="required-structure">Required Structure</h3>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;link rel=&quot;icon&quot; href=&quot;/static/favicon.ico&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/css/styles.css&quot;&gt;
+  &lt;title&gt;{{ .PageTitle }}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  {{ template &quot;_header.html&quot; }}
+
+  {{ block &quot;main&quot; . }}{{ end }}
+
+  {{ template &quot;_footer.html&quot; }}
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>Key points:</strong></p>
+
+<ul>
+<li><code>{{ template &quot;_header.html&quot; }}</code> - Includes the header partial (file must exist, can be empty)</li>
+<li><code>{{ block &quot;main&quot; . }}{{ end }}</code> - <strong>Required</strong> - Where <code>single.html</code> or <code>list.html</code> content gets injected</li>
+<li><code>{{ template &quot;_footer.html&quot; }}</code> - Includes the footer partial (file must exist, can be empty)</li>
+<li>Static assets are always served from <code>/static/</code> (e.g., <code>/static/css/styles.css</code>, <code>/static/favicon.ico</code>)</li>
+</ul>
+
+<h3 id="what-you-can-add-to-base-html">What You Can Add to _base.html</h3>
+
+<ul>
+<li><strong>External CSS/JS libraries</strong> (CDN links)</li>
+<li><strong>Custom JavaScript</strong> (analytics, theme toggles, etc.)</li>
+<li><strong>Meta tags</strong> (SEO, Open Graph, Twitter cards)</li>
+<li><strong>Web fonts</strong></li>
+<li><strong>Any HTML that should appear on every page</strong></li>
+</ul>
+
+<h2 id="content-templates">Content Templates</h2>
+
+<p><strong>single.html</strong> (For individual pages):</p>
+
+<pre><code class="language-html">&lt;article class=&quot;post&quot;&gt;
+  &lt;span class=&quot;date&quot;&gt;{{ .CreatedDate.Format &quot;2 January 2006&quot; }}&lt;/span&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    {{ .GenHtml }}
+  &lt;/div&gt;
+&lt;/article&gt;
+</code></pre>
+
+<p><strong>list.html</strong> (For section index pages):</p>
+
+<pre><code class="language-html">&lt;section&gt;
+  &lt;h1&gt;{{ .PageTitle }}&lt;/h1&gt;
+  &lt;ul&gt;
+    {{ range .List }}
+      &lt;li&gt;&lt;a href=&quot;{{ .DestPageDir }}&quot;&gt;{{ .PageTitle }}&lt;/a&gt;&lt;/li&gt;
+    {{ end }}
+  &lt;/ul&gt;
+&lt;/section&gt;
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> Content templates are automatically wrapped with <code>{{ define &quot;main&quot; }}...{{ end }}</code> if <code>_base.html</code> exists.</p>
+</blockquote>
+
+<h2 id="template-lookup-order">Template Lookup Order</h2>
+
+<p>For single pages, Hanamark searches upward from the content&rsquo;s location:</p>
+
+<ol>
+<li><code>templates/blog/single.html</code> (section-specific)</li>
+<li><code>templates/single.html</code> (root fallback)</li>
+</ol>
+
+<p>For list pages:</p>
+
+<ol>
+<li>Custom template from <code>_index.md</code> front matter</li>
+<li><code>templates/blog/list.html</code> (section-specific)</li>
+<li><code>templates/list.html</code> (root fallback)</li>
+</ol>
+
+<h2 id="adding-javascript-to-templates">Adding JavaScript to Templates</h2>
+
+<p>While Hanamark generates pure static HTML by default, you can easily add JavaScript via templates:</p>
+
+<p><strong>Example: Adding syntax highlighting with highlight.js</strong></p>
+
+<pre><code class="language-html">&lt;!-- In _base.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/css/styles.css&quot;&gt;
+  &lt;!-- External JS library --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css&quot;&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js&quot;&gt;&lt;/script&gt;
+  &lt;title&gt;{{ .PageTitle }}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  {{ template &quot;_header.html&quot; }}
+  {{ block &quot;main&quot; . }}{{ end }}
+  {{ template &quot;_footer.html&quot; }}
+
+  &lt;!-- Custom JavaScript --&gt;
+  &lt;script&gt;
+    hljs.highlightAll();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>Example: Dark/Light theme toggle</strong></p>
+
+<pre><code class="language-html">&lt;script&gt;
+  function toggleTheme() {
+    var html = document.documentElement;
+    var theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }
+
+  // Load saved theme
+  (function() {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  })();
+&lt;/script&gt;
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> You can add any JavaScript - analytics, interactive features, external libraries, etc. The &ldquo;Zero JavaScript by default&rdquo; means Hanamark itself doesn&rsquo;t require JS, but you&rsquo;re free to add it.</p>
+</blockquote>
+
+</article>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+  <p>Built with Hanamark. <a href="https://github.com/thevoid12/hanamark">View on GitHub</a></p>
+</footer>
+
+  <script>
+    function toggleTheme() {
+      var html = document.documentElement;
+      var currentTheme = html.getAttribute('data-theme');
+      var newTheme;
+
+      if (currentTheme === 'dark') {
+        newTheme = 'light';
+      } else if (currentTheme === 'light') {
+        newTheme = 'dark';
+      } else {
+        newTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
+      }
+
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateHighlightTheme(newTheme);
+    }
+
+    function updateHighlightTheme(theme) {
+      var darkStyle = document.getElementById('hljs-dark');
+      var lightStyle = document.getElementById('hljs-light');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        darkStyle.disabled = false;
+        lightStyle.disabled = true;
+      } else {
+        darkStyle.disabled = true;
+        lightStyle.disabled = false;
+      }
+    }
+
+    // Initialize highlight.js theme
+    updateHighlightTheme(document.documentElement.getAttribute('data-theme'));
+
+    // Initialize syntax highlighting
+    hljs.highlightAll();
+
+    // Add copy buttons to code blocks
+    document.querySelectorAll('pre').forEach(function(pre) {
+      var wrapper = document.createElement('div');
+      wrapper.className = 'code-block';
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.onclick = function() {
+        var code = pre.querySelector('code') || pre;
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(function() {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      };
+      wrapper.appendChild(btn);
+    });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      var sidebar = document.querySelector('.sidebar');
+      var overlay = document.querySelector('.sidebar-overlay');
+      var toggle = document.querySelector('.mobile-menu-toggle');
+
+      if (sidebar) {
+        sidebar.classList.toggle('open');
+      }
+      if (overlay) {
+        overlay.classList.toggle('open');
+      }
+      if (toggle) {
+        toggle.classList.toggle('active');
+      }
+    }
+  </script>
+</body>
+</html>

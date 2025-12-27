@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hanamark - A fast, minimal, and flexible static site generator written in Go">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <title>{{ .PageTitle }} | Hanamark Docs</title>
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  {{ template "_header.html" }}
+
+  <div class="docs-layout">
+    <div class="sidebar-overlay" onclick="toggleMobileMenu()"></div>
+    {{ template "_sidebar.html" }}
+
+    <main class="main-content">
+      <div class="content-wrapper">
+        {{ block "main" . }}{{ end }}
+      </div>
+    </main>
+  </div>
+
+  {{ template "_footer.html" }}
+
+  <script>
+    function toggleTheme() {
+      var html = document.documentElement;
+      var currentTheme = html.getAttribute('data-theme');
+      var newTheme;
+
+      if (currentTheme === 'dark') {
+        newTheme = 'light';
+      } else if (currentTheme === 'light') {
+        newTheme = 'dark';
+      } else {
+        newTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
+      }
+
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateHighlightTheme(newTheme);
+    }
+
+    function updateHighlightTheme(theme) {
+      var darkStyle = document.getElementById('hljs-dark');
+      var lightStyle = document.getElementById('hljs-light');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        darkStyle.disabled = false;
+        lightStyle.disabled = true;
+      } else {
+        darkStyle.disabled = true;
+        lightStyle.disabled = false;
+      }
+    }
+
+    // Initialize highlight.js theme
+    updateHighlightTheme(document.documentElement.getAttribute('data-theme'));
+
+    // Initialize syntax highlighting
+    hljs.highlightAll();
+
+    // Add copy buttons to code blocks
+    document.querySelectorAll('pre').forEach(function(pre) {
+      var wrapper = document.createElement('div');
+      wrapper.className = 'code-block';
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.onclick = function() {
+        var code = pre.querySelector('code') || pre;
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(function() {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      };
+      wrapper.appendChild(btn);
+    });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      var sidebar = document.querySelector('.sidebar');
+      var overlay = document.querySelector('.sidebar-overlay');
+      var toggle = document.querySelector('.mobile-menu-toggle');
+
+      if (sidebar) {
+        sidebar.classList.toggle('open');
+      }
+      if (overlay) {
+        overlay.classList.toggle('open');
+      }
+      if (toggle) {
+        toggle.classList.toggle('active');
+      }
+    }
+  </script>
+</body>
+</html>

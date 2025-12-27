@@ -1,0 +1,24 @@
+{
+  "filepath": {
+    "sourceMDDir": "./configurables/source_md",
+    "destHtmlDir": "./hanamark_docs",
+    "templatePath": "./configurables/templates",
+    "sourceStaticFiles": "./configurables/static",
+    "mdAssetsSourcePath": "./configurables/source_md/assets/",
+    "mdAssetsDestPath": "./hanamark_docs/assets/"
+  },
+  "indexHomepageHtml": {
+    "type": "page",
+    "name": "index.html"
+  },
+  "logger": {
+    "filepath": "hanamark.logs",
+    "level": "debug"
+  },
+  "rss": {
+    "isRssEnabled": false
+  },
+  "tags": false,
+  "sortFilesByCreatedOn": true,
+  "servePort": "3000"
+}

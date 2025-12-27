@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hanamark - A fast, minimal, and flexible static site generator written in Go">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" id="hljs-dark">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" id="hljs-light" disabled>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <title>Rules and Constraints | Hanamark Docs</title>
+  <script>
+    (function() {
+      var theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+        <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <a href="/index.html" class="logo">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="var(--accent)"/>
+          <path d="M8 10h6v12H8V10zm10 0h6v12h-6V10z" fill="white"/>
+          <path d="M11 16h10" stroke="white" stroke-width="2"/>
+        </svg>
+        Hanamark
+      </a>
+      <nav class="header-nav">
+        <a href="/docs/getting-started.html">Docs</a>
+        <a href="/docs/examples.html">Examples</a>
+        <a href="/llm-docs.html">LLM Docs</a>
+      </nav>
+    </div>
+    <div class="header-right">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <a href="https://github.com/thevoid12/hanamark" class="github-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+  <div class="docs-layout">
+    <div class="sidebar-overlay" onclick="toggleMobileMenu()"></div>
+    <aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Getting Started</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/getting-started.html">Introduction</a></li>
+      <li><a href="/docs/installation.html">Installation</a></li>
+      <li><a href="/docs/quick-start.html">Quick Start</a></li>
+      <li><a href="/docs/project-structure.html">Project Structure</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Core Concepts</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/configuration.html">Configuration</a></li>
+      <li><a href="/docs/content-organization.html">Content Organization</a></li>
+      <li><a href="/docs/front-matter.html">Front Matter</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Templating</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/templating.html">Template Basics</a></li>
+      <li><a href="/docs/template-variables.html">Template Variables</a></li>
+      <li><a href="/docs/custom-templates.html">Custom Templates</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Features</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/tags.html">Tags</a></li>
+      <li><a href="/docs/assets.html">Assets & Static Files</a></li>
+      <li><a href="/docs/rss.html">RSS Feed</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">Reference</div>
+    <ul class="sidebar-nav">
+      <li><a href="/docs/rules-and-constraints.html">Rules & Constraints</a></li>
+      <li><a href="/docs/commands.html">CLI Commands</a></li>
+      <li><a href="/docs/examples.html">Examples</a></li>
+      <li><a href="/llm-docs.html">LLM-Friendly Docs</a></li>
+    </ul>
+  </div>
+</aside>
+
+
+    <main class="main-content">
+      <div class="content-wrapper">
+        <article class="doc-content">
+  <h1 id="rules-and-constraints">Rules and Constraints</h1>
+
+<p>This page documents what you can and cannot do with Hanamark. Understanding these constraints will help you avoid common pitfalls.</p>
+
+<h2 id="mandatory-requirements">Mandatory Requirements</h2>
+
+<p>These are <strong>required</strong> for Hanamark to work correctly. Do not change these conventions.</p>
+
+<h3 id="required-directory-structure">Required Directory Structure</h3>
+
+<pre><code>configurables/
+├── config.json                    # REQUIRED - Main configuration file
+├── source_md/                     # REQUIRED - Markdown content directory
+│   └── assets/                    # REQUIRED - All markdown images must be here
+├── static/                        # REQUIRED - Static files directory
+│   └── css/
+│       └── styles.css             # REQUIRED - Main stylesheet (this exact path)
+└── templates/                     # REQUIRED - HTML templates directory
+    ├── _base.html                 # REQUIRED - Base layout template
+    ├── _header.html               # REQUIRED - Header partial (can be empty)
+    ├── _footer.html               # REQUIRED - Footer partial (can be empty)
+    └── single.html                # REQUIRED - Default single page template
+</code></pre>
+
+<h3 id="required-files">Required Files</h3>
+
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Path</th>
+<th>Purpose</th>
+<th>Can Be Empty?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>config.json</code></td>
+<td><code>configurables/config.json</code></td>
+<td>Main configuration</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>_base.html</code></td>
+<td><code>templates/_base.html</code></td>
+<td>Base layout wrapper</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>_header.html</code></td>
+<td><code>templates/_header.html</code></td>
+<td>Header partial</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td><code>_footer.html</code></td>
+<td><code>templates/_footer.html</code></td>
+<td>Footer partial</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td><code>single.html</code></td>
+<td><code>templates/single.html</code></td>
+<td>Default page template</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>styles.css</code></td>
+<td><code>static/css/styles.css</code></td>
+<td>Main stylesheet</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="required-paths-cannot-be-changed">Required Paths (Cannot Be Changed)</h3>
+
+<table>
+<thead>
+<tr>
+<th>Asset Type</th>
+<th>Must Be At</th>
+<th>Referenced As</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>CSS</td>
+<td><code>static/css/styles.css</code></td>
+<td><code>/static/css/styles.css</code></td>
+</tr>
+
+<tr>
+<td>Favicon</td>
+<td><code>static/favicon.ico</code> or <code>static/favicon.svg</code></td>
+<td><code>/static/favicon.ico</code></td>
+</tr>
+
+<tr>
+<td>Images</td>
+<td><code>static/images/</code></td>
+<td><code>/static/images/</code></td>
+</tr>
+
+<tr>
+<td>Markdown Assets</td>
+<td><code>source_md/assets/</code></td>
+<td><code>./assets/</code> in markdown</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="system-files-underscore-prefix">System Files (Underscore Prefix)</h2>
+
+<p>Files starting with <code>_</code> are <strong>system files</strong> with special meaning:</p>
+
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Location</th>
+<th>Purpose</th>
+<th>Required?</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>_base.html</code></td>
+<td><code>templates/</code></td>
+<td>Master layout template that wraps all pages</td>
+<td><strong>Yes</strong></td>
+</tr>
+
+<tr>
+<td><code>_header.html</code></td>
+<td><code>templates/</code></td>
+<td>Header partial included in base</td>
+<td><strong>Yes</strong> (can be empty)</td>
+</tr>
+
+<tr>
+<td><code>_footer.html</code></td>
+<td><code>templates/</code></td>
+<td>Footer partial included in base</td>
+<td><strong>Yes</strong> (can be empty)</td>
+</tr>
+
+<tr>
+<td><code>_index.html</code></td>
+<td><code>templates/</code></td>
+<td>Custom homepage template</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>_index.md</code></td>
+<td>Any content folder</td>
+<td>Section configuration for list pages</td>
+<td>No (but required for list pages)</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p><strong>Warning:</strong> Do not delete <code>_header.html</code> or <code>_footer.html</code> even if empty. The <code>_base.html</code> template references them and will fail if they don&rsquo;t exist.</p>
+</blockquote>
+
+<hr>
+
+<h2 id="what-you-can-do">What You CAN Do</h2>
+
+<h3 id="add-javascript">Add JavaScript</h3>
+
+<p>Hanamark generates pure static HTML by default, but you can add any JavaScript via templates:</p>
+
+<pre><code class="language-html">&lt;!-- In _base.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/css/styles.css&quot;&gt;
+  &lt;!-- External JS library --&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css&quot;&gt;
+  &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js&quot;&gt;&lt;/script&gt;
+  &lt;title&gt;{{ .PageTitle }}&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  {{ template &quot;_header.html&quot; }}
+  {{ block &quot;main&quot; . }}{{ end }}
+  {{ template &quot;_footer.html&quot; }}
+
+  &lt;!-- Custom JavaScript --&gt;
+  &lt;script&gt;
+    // Initialize syntax highlighting
+    hljs.highlightAll();
+
+    // Add copy buttons to code blocks
+    document.querySelectorAll('pre').forEach(function(pre) {
+      var btn = document.createElement('button');
+      btn.textContent = 'Copy';
+      btn.onclick = function() {
+        navigator.clipboard.writeText(pre.textContent);
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+      };
+      pre.appendChild(btn);
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><strong>Example: Dark/Light theme toggle</strong></p>
+
+<pre><code class="language-html">&lt;script&gt;
+  function toggleTheme() {
+    var html = document.documentElement;
+    var theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }
+
+  // Load saved theme
+  (function() {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  })();
+&lt;/script&gt;
+</code></pre>
+
+<blockquote>
+<p><strong>Note:</strong> You can add any JavaScript - analytics, interactive features, external libraries, etc. The &ldquo;Zero JavaScript by default&rdquo; means Hanamark itself doesn&rsquo;t require JS to function, but you&rsquo;re completely free to add it via templates.</p>
+</blockquote>
+
+<h3 id="other-things-you-can-do">Other Things You CAN Do</h3>
+
+<ul>
+<li><strong>Add external CSS</strong> - Link to CDN stylesheets in <code>_base.html</code></li>
+<li><strong>Create custom templates</strong> - Add any <code>.html</code> files in <code>templates/</code></li>
+<li><strong>Nest content folders</strong> - Create deep folder structures in <code>source_md/</code></li>
+<li><strong>Use custom front matter</strong> - Add any YAML fields, access via <code>.FrontMatterMap</code></li>
+<li><strong>Override templates per-page</strong> - Use <code>template:</code> in front matter</li>
+<li><strong>Empty system files</strong> - <code>_header.html</code> and <code>_footer.html</code> can be empty</li>
+</ul>
+
+<hr>
+
+<h2 id="what-you-cannot-do">What You CANNOT Do</h2>
+
+<ul>
+<li><strong>Change static path</strong> - Assets must be in <code>static/</code> and referenced as <code>/static/</code></li>
+<li><strong>Change CSS path</strong> - Must be <code>static/css/styles.css</code></li>
+<li><strong>Delete system files</strong> - <code>_base.html</code>, <code>_header.html</code>, <code>_footer.html</code> must exist</li>
+<li><strong>Use RSS on single pages</strong> - RSS only works on sections (list pages with <code>_index.md</code>)</li>
+<li><strong>Skip <code>_index.md</code> for lists</strong> - Folders without <code>_index.md</code> won&rsquo;t generate list pages</li>
+<li><strong>Use relative paths for static assets</strong> - Always use absolute paths like <code>/static/...</code></li>
+</ul>
+
+<hr>
+
+<h2 id="template-rules">Template Rules</h2>
+
+<h3 id="base-html-must-contain">_base.html Must Contain</h3>
+
+<pre><code class="language-html">{{ template &quot;_header.html&quot; }}
+{{ block &quot;main&quot; . }}{{ end }}
+{{ template &quot;_footer.html&quot; }}
+</code></pre>
+
+<h3 id="content-templates-are-auto-wrapped">Content Templates Are Auto-Wrapped</h3>
+
+<p>Don&rsquo;t add <code>{{ define &quot;main&quot; }}</code> manually - Hanamark does this automatically.</p>
+
+<h3 id="template-lookup-order">Template Lookup Order</h3>
+
+<ol>
+<li>Section-specific: <code>templates/blog/single.html</code></li>
+<li>Root fallback: <code>templates/single.html</code></li>
+</ol>
+
+<hr>
+
+<h2 id="content-rules">Content Rules</h2>
+
+<ol>
+<li><strong>Single pages require <code>created_on</code></strong> - Front matter must include a date</li>
+<li><strong>List pages require <code>_index.md</code></strong> - Even if empty, the file must exist for list generation</li>
+<li><strong>Assets must be in one folder</strong> - All markdown images go in <code>source_md/assets/</code></li>
+<li><strong>Reference assets relatively</strong> - Use <code>./assets/image.png</code> in markdown</li>
+</ol>
+
+<hr>
+
+<h2 id="common-mistakes-to-avoid">Common Mistakes to Avoid</h2>
+
+<table>
+<thead>
+<tr>
+<th>Mistake</th>
+<th>Why It Fails</th>
+<th>Fix</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Deleting <code>_header.html</code></td>
+<td><code>_base.html</code> references it</td>
+<td>Keep file, can be empty</td>
+</tr>
+
+<tr>
+<td>Using <code>./static/css/styles.css</code></td>
+<td>Relative paths break on nested pages</td>
+<td>Use <code>/static/css/styles.css</code></td>
+</tr>
+
+<tr>
+<td>No <code>_index.md</code> in folder</td>
+<td>List page won&rsquo;t be generated</td>
+<td>Add <code>_index.md</code> (can be empty with just <code>---\n---</code>)</td>
+</tr>
+
+<tr>
+<td>Missing <code>created_on</code></td>
+<td>Single pages require a date</td>
+<td>Add <code>created_on: YYYY-MM-DD</code> to front matter</td>
+</tr>
+
+<tr>
+<td>Images outside <code>assets/</code></td>
+<td>Won&rsquo;t be copied to output</td>
+<td>Put all markdown images in <code>source_md/assets/</code></td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+  <p>Built with Hanamark. <a href="https://github.com/thevoid12/hanamark">View on GitHub</a></p>
+</footer>
+
+  <script>
+    function toggleTheme() {
+      var html = document.documentElement;
+      var currentTheme = html.getAttribute('data-theme');
+      var newTheme;
+
+      if (currentTheme === 'dark') {
+        newTheme = 'light';
+      } else if (currentTheme === 'light') {
+        newTheme = 'dark';
+      } else {
+        newTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
+      }
+
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateHighlightTheme(newTheme);
+    }
+
+    function updateHighlightTheme(theme) {
+      var darkStyle = document.getElementById('hljs-dark');
+      var lightStyle = document.getElementById('hljs-light');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        darkStyle.disabled = false;
+        lightStyle.disabled = true;
+      } else {
+        darkStyle.disabled = true;
+        lightStyle.disabled = false;
+      }
+    }
+
+    // Initialize highlight.js theme
+    updateHighlightTheme(document.documentElement.getAttribute('data-theme'));
+
+    // Initialize syntax highlighting
+    hljs.highlightAll();
+
+    // Add copy buttons to code blocks
+    document.querySelectorAll('pre').forEach(function(pre) {
+      var wrapper = document.createElement('div');
+      wrapper.className = 'code-block';
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.onclick = function() {
+        var code = pre.querySelector('code') || pre;
+        navigator.clipboard.writeText(code.textContent).then(function() {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(function() {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      };
+      wrapper.appendChild(btn);
+    });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      var sidebar = document.querySelector('.sidebar');
+      var overlay = document.querySelector('.sidebar-overlay');
+      var toggle = document.querySelector('.mobile-menu-toggle');
+
+      if (sidebar) {
+        sidebar.classList.toggle('open');
+      }
+      if (overlay) {
+        overlay.classList.toggle('open');
+      }
+      if (toggle) {
+        toggle.classList.toggle('active');
+      }
+    }
+  </script>
+</body>
+</html>

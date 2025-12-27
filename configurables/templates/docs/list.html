@@ -1,0 +1,8 @@
+<article class="doc-content">
+  <h1>{{ .PageTitle }}</h1>
+  <ul class="doc-list">
+    {{ range .List }}
+      <li><a href="{{ .DestPageDir }}">{{ .PageTitle }}</a></li>
+    {{ end }}
+  </ul>
+</article>
