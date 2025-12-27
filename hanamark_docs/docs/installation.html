@@ -140,25 +140,44 @@
 <tbody>
 <tr>
 <td>macOS (Intel)</td>
-<td><code>hanamark-darwin-amd64</code></td>
+<td><code>hanamark_Darwin_x86_64.tar.gz</code></td>
 </tr>
 
 <tr>
 <td>macOS (Apple Silicon)</td>
-<td><code>hanamark-darwin-arm64</code></td>
+<td><code>hanamark_Darwin_arm64.tar.gz</code></td>
 </tr>
 
 <tr>
 <td>Linux (64-bit)</td>
-<td><code>hanamark-linux-amd64</code></td>
+<td><code>hanamark_Linux_x86_64.tar.gz</code></td>
+</tr>
+
+<tr>
+<td>Linux (ARM 64-bit)</td>
+<td><code>hanamark_Linux_arm64.tar.gz</code></td>
 </tr>
 
 <tr>
 <td>Windows (64-bit)</td>
-<td><code>hanamark-windows-amd64.exe</code></td>
+<td><code>hanamark_Windows_x86_64.zip</code></td>
+</tr>
+
+<tr>
+<td>Windows (ARM 64-bit)</td>
+<td><code>hanamark_Windows_arm64.zip</code></td>
 </tr>
 </tbody>
 </table>
+<p>download the binary and use gunzip to extract the tarball and then get the executable</p>
+
+<pre><code class="language-bash"># Example: Download and make executable (macOS/Linux)
+chmod +x hanamark-darwin-arm64
+mv hanamark-darwin-arm64 hanamark
+
+# Run
+./hanamark init
+</code></pre>
 
 <h3 id="setup">Setup</h3>
 

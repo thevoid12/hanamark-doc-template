@@ -11,11 +11,24 @@ Hanamark is distributed as a single binary with no dependencies.
 Download the pre-built binary for your platform from the [GitHub Releases](https://github.com/thevoid12/hanamark/releases) page.
 
 | Platform | Download |
-|----------|----------|
-| macOS (Intel) | `hanamark-darwin-amd64` |
-| macOS (Apple Silicon) | `hanamark-darwin-arm64` |
-| Linux (64-bit) | `hanamark-linux-amd64` |
-| Windows (64-bit) | `hanamark-windows-amd64.exe` |
+| --- | --- |
+| macOS (Intel) | `hanamark_Darwin_x86_64.tar.gz` |
+| macOS (Apple Silicon) | `hanamark_Darwin_arm64.tar.gz` |
+| Linux (64-bit) | `hanamark_Linux_x86_64.tar.gz` |
+| Linux (ARM 64-bit) | `hanamark_Linux_arm64.tar.gz` |
+| Windows (64-bit) | `hanamark_Windows_x86_64.zip` |
+| Windows (ARM 64-bit) | `hanamark_Windows_arm64.zip` |
+
+download the binary and use gunzip to extract the tarball and then get the executable
+
+```bash
+# Example: Download and make executable (macOS/Linux)
+chmod +x hanamark-darwin-arm64
+mv hanamark-darwin-arm64 hanamark
+
+# Run
+./hanamark init
+```
 
 ### Setup
 
