@@ -8,6 +8,7 @@ template: "landing.html"
 **Hanamark** is a fast, minimal, and flexible static site generator written in Go.
 
 > Write in Markdown. Style with templates. Deploy anywhere.
+built by: [void](https://www.thisisvoid.in/)
 
 ## Features
 

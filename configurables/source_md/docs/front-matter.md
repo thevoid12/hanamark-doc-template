@@ -15,6 +15,7 @@ tags: ["go", "tutorial"]
 draft: false
 template: "custom_template.html"
 rss: true
+title: "example"
 ---
 
 # Your Content Here
@@ -29,6 +30,7 @@ rss: true
 | `draft` | boolean | If `true`, page is excluded from build | No |
 | `template` | string | Custom template path (relative to templates dir) | No |
 | `rss` | boolean | Include section in RSS feed (for `_index.md` only) | No |
+| `title` | string | custom title for document | No |
 
 ## Date Formats
 
