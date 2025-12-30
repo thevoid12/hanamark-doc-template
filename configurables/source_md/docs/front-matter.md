@@ -16,6 +16,8 @@ draft: false
 template: "custom_template.html"
 rss: true
 title: "example"
+description: "A comprehensive guide to OpenGraph in Hanamark"
+ogImage: "/static/images/opengraph-guide.png"
 ---
 
 # Your Content Here
@@ -30,7 +32,9 @@ title: "example"
 | `draft` | boolean | If `true`, page is excluded from build | No |
 | `template` | string | Custom template path (relative to templates dir) | No |
 | `rss` | boolean | Include section in RSS feed (for `_index.md` only) | No |
-| `title` | string | custom title for document | No |
+| `title` | string | Custom title for document (overrides H1) | No |
+| `description` | string | Description for meta tags (OpenGraph, Twitter) | No |
+| `ogImage` | string | Custom image URL for social media previews | No |
 
 ## Date Formats
 

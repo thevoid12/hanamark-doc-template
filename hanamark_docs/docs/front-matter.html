@@ -134,6 +134,8 @@ draft: false
 template: &quot;custom_template.html&quot;
 rss: true
 title: &quot;example&quot;
+description: &quot;A comprehensive guide to OpenGraph in Hanamark&quot;
+ogImage: &quot;/static/images/opengraph-guide.png&quot;
 ---
 
 # Your Content Here
@@ -190,7 +192,21 @@ title: &quot;example&quot;
 <tr>
 <td><code>title</code></td>
 <td>string</td>
-<td>custom title for document</td>
+<td>Custom title for document (overrides H1)</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Description for meta tags (OpenGraph, Twitter)</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>ogImage</code></td>
+<td>string</td>
+<td>Custom image URL for social media previews</td>
 <td>No</td>
 </tr>
 </tbody>

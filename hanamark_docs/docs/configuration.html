@@ -154,7 +154,16 @@
   },
   &quot;tags&quot;: true,
   &quot;sortFilesByCreatedOn&quot;: true,
-  &quot;servePort&quot;: &quot;3000&quot;
+  &quot;servePort&quot;: &quot;3000&quot;,
+  &quot;opengraph&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;siteName&quot;: &quot;My Awesome Blog&quot;,
+    &quot;baseUrl&quot;: &quot;https://example.com&quot;,
+    &quot;defaultImage&quot;: &quot;/static/images/og-default.png&quot;,
+    &quot;imageWidth&quot;: &quot;1200&quot;,
+    &quot;imageHeight&quot;: &quot;630&quot;,
+    &quot;twitterCard&quot;: &quot;summary_large_image&quot;
+  }
 }
 </code></pre>
 
@@ -323,6 +332,63 @@
 <blockquote>
 <p><strong>Note:</strong> If you have an <code>index.md</code> in your source root, it takes precedence over all these settings.</p>
 </blockquote>
+
+<h2 id="opengraph-support-se0">OpenGraph Support (SE0)</h2>
+
+<p>Configure OpenGraph and Twitter Card metadata for better social media sharing.</p>
+
+<pre><code class="language-json">&quot;opengraph&quot;: {
+  &quot;enabled&quot;: true,
+  &quot;siteName&quot;: &quot;My Awesome Blog&quot;,
+  &quot;baseUrl&quot;: &quot;https://example.com&quot;,
+  &quot;defaultImage&quot;: &quot;/static/images/og-default.png&quot;,
+  &quot;imageWidth&quot;: &quot;1200&quot;,
+  &quot;imageHeight&quot;: &quot;630&quot;,
+  &quot;twitterCard&quot;: &quot;summary_large_image&quot;
+}
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td>Enable/disable generation</td>
+<td>Yes</td>
+</tr>
+
+<tr>
+<td><code>siteName</code></td>
+<td>Site name for <code>og:site_name</code></td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>baseUrl</code></td>
+<td>Base URL (essential for valid absolute URLs)</td>
+<td><strong>Yes</strong></td>
+</tr>
+
+<tr>
+<td><code>defaultImage</code></td>
+<td>Default fallback image if page has no image</td>
+<td>No</td>
+</tr>
+
+<tr>
+<td><code>twitterCard</code></td>
+<td>Twitter card type (usually <code>summary_large_image</code>)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="logger">Logger</h2>
 

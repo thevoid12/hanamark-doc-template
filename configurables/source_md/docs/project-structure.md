@@ -28,6 +28,7 @@ your-project/
 │       ├── _base.html           # Base layout template
 │       ├── _header.html         # Header partial
 │       ├── _footer.html         # Footer partial
+│       ├── _opengraph.html      # OpenGraph meta tags partial
 │       ├── single.html          # Default single page template
 │       ├── blog/
 │       │   ├── single.html      # Blog post template
@@ -110,6 +111,7 @@ Files starting with `_` are **system files** with special meaning:
 | `_base.html` | `templates/` | Master layout template | **Yes** |
 | `_header.html` | `templates/` | Header partial | **Yes** (can be empty) |
 | `_footer.html` | `templates/` | Footer partial | **Yes** (can be empty) |
+| `_opengraph.html` | `templates/` | OpenGraph meta tags | No (optional) |
 | `_index.html` | `templates/` | Custom homepage template | No |
 | `_index.md` | Any content folder | Section config for list pages | No (but required for lists) |
 

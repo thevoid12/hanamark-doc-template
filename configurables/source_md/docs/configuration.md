@@ -36,7 +36,16 @@ Configuration is stored in `./configurables/config.json`.
   },
   "tags": true,
   "sortFilesByCreatedOn": true,
-  "servePort": "3000"
+  "servePort": "3000",
+  "opengraph": {
+    "enabled": true,
+    "siteName": "My Awesome Blog",
+    "baseUrl": "https://example.com",
+    "defaultImage": "/static/images/og-default.png",
+    "imageWidth": "1200",
+    "imageHeight": "630",
+    "twitterCard": "summary_large_image"
+  }
 }
 ```
 
@@ -148,6 +157,30 @@ templates/
 - If `_index.html` does not exist, the referenced section's template (e.g., `blog/list.html`) will be used
 
 > **Note:** If you have an `index.md` in your source root, it takes precedence over all these settings.
+
+## OpenGraph Support (SE0)
+
+Configure OpenGraph and Twitter Card metadata for better social media sharing.
+
+```json
+"opengraph": {
+  "enabled": true,
+  "siteName": "My Awesome Blog",
+  "baseUrl": "https://example.com",
+  "defaultImage": "/static/images/og-default.png",
+  "imageWidth": "1200",
+  "imageHeight": "630",
+  "twitterCard": "summary_large_image"
+}
+```
+
+| Key | Description | Required |
+|-----|-------------|----------|
+| `enabled` | Enable/disable generation | Yes |
+| `siteName` | Site name for `og:site_name` | No |
+| `baseUrl` | Base URL (essential for valid absolute URLs) | **Yes** |
+| `defaultImage` | Default fallback image if page has no image | No |
+| `twitterCard` | Twitter card type (usually `summary_large_image`) | No |
 
 ## Logger
 
