@@ -5,6 +5,7 @@ created_on: 2024-12-26
 # Examples
 
 Practical examples to help you get started with Hanamark.
+- Check out this repo on how I created this blog using hanamark :[link](https://github.com/thevoid12/hanamark-doc-template)
 
 ## Basic Blog Post
 

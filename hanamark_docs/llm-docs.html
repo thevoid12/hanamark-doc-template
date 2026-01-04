@@ -128,32 +128,15 @@
 </style>
 
 <article class="doc-content llm-docs">
-  <h1>LLM-Friendly Documentation</h1>
-  <p>
-We are moving in a fast paced AI era and one main advantage of hanamark is how short,compact but full of features. I have carefully built this engine such that even llms can easily understand the whole context of hanamark with limited token and information so that they can assist you to setup and your sites. This page contains the complete Hanamark documentation in a format optimized for Large Language Models (ChatGPT, Claude, Gemini, etc.). Copy the sections below to give an LLM context about Hanamark.
-</p>
+  <h1 id="llm-friendly-documentation">LLM-Friendly Documentation</h1>
 
-  <div class="llm-section llm-full-doc-top">
-    <h2>Full Documentation</h2>
-    <p>Copy the complete README with all details to give an LLM full context:</p>
-    <div class="llm-copy-block">
-      <div class="llm-copy-header">
-        <span class="llm-copy-title">Complete README.md</span>
-        <button class="llm-copy-btn" onclick="copyToClipboard(this, 'full-readme')">Copy Full Documentation</button>
-      </div>
-    </div>
-  </div>
+<p>We are moving in a fast paced AI era and one main advantage of hanamark is how short,compact but full of features. I have carefully built this engine such that even llms can easily understand the whole context of hanamark with limited token and information so that they can assist you to setup and your sites. This page contains the complete Hanamark documentation in a format optimized for Large Language Models (ChatGPT, Claude, Gemini, etc.). Copy the sections below to give an LLM context about Hanamark.</p>
 
-  <div class="llm-section">
-    <h2>Quick Context Prompt</h2>
-    <p>Copy this to quickly give an LLM context about Hanamark:</p>
-    <div class="llm-copy-block">
-      <div class="llm-copy-header">
-        <span class="llm-copy-title">Context Prompt</span>
-        <button class="llm-copy-btn" onclick="copyToClipboard(this, 'context-prompt')">Copy to Clipboard</button>
-      </div>
-      <div class="llm-copy-content">
-        <pre id="context-prompt">Hanamark is a static site generator written in Go. Here's what you need to know:
+<h2 id="quick-context-prompt">Quick Context Prompt</h2>
+
+<p>Copy this to quickly give an LLM context about Hanamark:</p>
+
+<pre><code>Hanamark is a static site generator written in Go. Here's what you need to know:
 
 COMMANDS:
 - hanamark init    # Initialize new project
@@ -165,7 +148,7 @@ configurables/
   config.json         # Main configuration
   source_md/          # Markdown content
   templates/          # HTML templates (Go html/template)
-  static/             # CSS, JS, images -> copied to /static/
+  static/             # CSS, JS, images -&gt; copied to /static/
 
 KEY CONCEPTS:
 - single.html: Template for individual pages (.md files)
@@ -176,46 +159,37 @@ KEY CONCEPTS:
 FRONT MATTER (YAML at top of .md files):
 ---
 created_on: 2024-01-15    # Required for single pages
-tags: ["tag1", "tag2"]    # Optional
+tags: [&quot;tag1&quot;, &quot;tag2&quot;]    # Optional
 draft: true               # Exclude from build
-template: "custom.html"   # Override template
+template: &quot;custom.html&quot;   # Override template
 rss: true                 # for _index.md only ie on list pages
-
-
 ---
 
 TEMPLATE VARIABLES:
-- &#123;&#123; .GenHtml &#125;&#125;      # Rendered markdown content
-- &#123;&#123; .PageTitle &#125;&#125;    # First heading from content
-- &#123;&#123; .CreatedDate &#125;&#125;  # Creation date (use .Format "Jan 2, 2006")
-- &#123;&#123; .Tags &#125;&#125;         # Array of tags
-- &#123;&#123; .List &#125;&#125;         # Array of pages (in list.html)
+- {{ .GenHtml }}      # Rendered markdown content
+- {{ .PageTitle }}    # First heading from content
+- {{ .CreatedDate }}  # Creation date (use .Format &quot;Jan 2, 2006&quot;)
+- {{ .Tags }}         # Array of tags
+- {{ .List }}         # Array of pages (in list.html)
 
 CONFIG.JSON STRUCTURE:
 {
-  "filepath": {
-    "sourceMDDir": "./configurables/source_md",
-    "destHtmlDir": "./output_html",
-    "templatePath": "./configurables/templates",
-    "sourceStaticFiles": "./configurables/static"
+  &quot;filepath&quot;: {
+    &quot;sourceMDDir&quot;: &quot;./configurables/source_md&quot;,
+    &quot;destHtmlDir&quot;: &quot;./output_html&quot;,
+    &quot;templatePath&quot;: &quot;./configurables/templates&quot;,
+    &quot;sourceStaticFiles&quot;: &quot;./configurables/static&quot;
   },
-  "tags": true,
-  "servePort": "3000"
-}</pre>
-      </div>
-    </div>
-  </div>
+  &quot;tags&quot;: true,
+  &quot;servePort&quot;: &quot;3000&quot;
+}
+</code></pre>
 
-  <div class="llm-section">
-    <h2>Command Reference</h2>
-    <p>All available CLI commands:</p>
-    <div class="llm-copy-block">
-      <div class="llm-copy-header">
-        <span class="llm-copy-title">CLI Commands</span>
-        <button class="llm-copy-btn" onclick="copyToClipboard(this, 'cli-commands')">Copy to Clipboard</button>
-      </div>
-      <div class="llm-copy-content">
-        <pre id="cli-commands"># Initialize a new Hanamark project
+<h2 id="command-reference">Command Reference</h2>
+
+<p>All available CLI commands:</p>
+
+<pre><code class="language-bash"># Initialize a new Hanamark project
 ./hanamark init
 
 # Build the static site (generates output_html/)
@@ -235,890 +209,111 @@ CONFIG.JSON STRUCTURE:
 # Edit content in configurables/source_md/
 ./hanamark build
 ./hanamark serve
-# Deploy output_html/ to hosting</pre>
-      </div>
-    </div>
-  </div>
+# Deploy output_html/ to hosting
+</code></pre>
 
-  <div class="llm-section">
-    <h2>Template Examples</h2>
-    <p>Common template patterns:</p>
-    <div class="llm-copy-block">
-      <div class="llm-copy-header">
-        <span class="llm-copy-title">Template Examples</span>
-        <button class="llm-copy-btn" onclick="copyToClipboard(this, 'template-examples')">Copy to Clipboard</button>
-      </div>
-      <div class="llm-copy-content">
-        <pre id="template-examples"><!-- _base.html - Master layout -->
+<h2 id="template-examples">Template Examples</h2>
+
+<p>Common template patterns:</p>
+
+<pre><code class="language-html">&lt;!-- _base.html - Master layout --&gt;
 &lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
+&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;link rel="stylesheet" href="/static/css/styles.css"&gt;
-  &lt;title&gt;&#123;&#123; .PageTitle &#125;&#125;&lt;/title&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/css/styles.css&quot;&gt;
+  &lt;title&gt;{{ .PageTitle }}&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &#123;&#123; template "_header.html" &#125;&#125;
-  &#123;&#123; block "main" . &#125;&#125;&#123;&#123; end &#125;&#125;
-  &#123;&#123; template "_footer.html" &#125;&#125;
+  {{ template &quot;_header.html&quot; }}
+  {{ block &quot;main&quot; . }}{{ end }}
+  {{ template &quot;_footer.html&quot; }}
 &lt;/body&gt;
 &lt;/html&gt;
 
-<!-- single.html - Individual page template -->
+&lt;!-- single.html - Individual page template --&gt;
 &lt;article&gt;
-  &lt;h1&gt;&#123;&#123; .PageTitle &#125;&#125;&lt;/h1&gt;
-  &lt;time&gt;&#123;&#123; .CreatedDate.Format "January 2, 2006" &#125;&#125;&lt;/time&gt;
-  &#123;&#123; range .Tags &#125;&#125;
-    &lt;a href="&#123;&#123; .TagDestPath &#125;&#125;"&gt;&#123;&#123; .TagName &#125;&#125;&lt;/a&gt;
-  &#123;&#123; end &#125;&#125;
-  &lt;div&gt;&#123;&#123; .GenHtml &#125;&#125;&lt;/div&gt;
+  &lt;h1&gt;{{ .PageTitle }}&lt;/h1&gt;
+  &lt;time&gt;{{ .CreatedDate.Format &quot;January 2, 2006&quot; }}&lt;/time&gt;
+  {{ range .Tags }}
+    &lt;a href=&quot;{{ .TagDestPath }}&quot;&gt;{{ .TagName }}&lt;/a&gt;
+  {{ end }}
+  &lt;div&gt;{{ .GenHtml }}&lt;/div&gt;
 &lt;/article&gt;
 
-<!-- list.html - Section listing template -->
+&lt;!-- list.html - Section listing template --&gt;
 &lt;section&gt;
-  &lt;h1&gt;&#123;&#123; .PageTitle &#125;&#125;&lt;/h1&gt;
+  &lt;h1&gt;{{ .PageTitle }}&lt;/h1&gt;
   &lt;ul&gt;
-    &#123;&#123; range .List &#125;&#125;
+    {{ range .List }}
       &lt;li&gt;
-        &lt;a href="&#123;&#123; .DestPageDir &#125;&#125;"&gt;&#123;&#123; .PageTitle &#125;&#125;&lt;/a&gt;
-        &lt;time&gt;&#123;&#123; .CreatedDate.Format "Jan 2, 2006" &#125;&#125;&lt;/time&gt;
+        &lt;a href=&quot;{{ .DestPageDir }}&quot;&gt;{{ .PageTitle }}&lt;/a&gt;
+        &lt;time&gt;{{ .CreatedDate.Format &quot;Jan 2, 2006&quot; }}&lt;/time&gt;
       &lt;/li&gt;
-    &#123;&#123; end &#125;&#125;
+    {{ end }}
   &lt;/ul&gt;
-&lt;/section&gt;</pre>
-      </div>
-    </div>
-  </div>
+&lt;/section&gt;
+</code></pre>
 
-  <div class="llm-section">
-    <h2>Configuration Reference</h2>
-    <p>Complete config.json with all options:</p>
-    <div class="llm-copy-block">
-      <div class="llm-copy-header">
-        <span class="llm-copy-title">config.json</span>
-        <button class="llm-copy-btn" onclick="copyToClipboard(this, 'config-json')">Copy to Clipboard</button>
-      </div>
-      <div class="llm-copy-content">
-        <pre id="config-json">{
-  "filepath": {
-    "sourceMDDir": "./configurables/source_md",
-    "destHtmlDir": "./output_html",
-    "templatePath": "./configurables/templates",
-    "sourceStaticFiles": "./configurables/static",
-    "mdAssetsSourcePath": "./configurables/source_md/assets/",
-    "mdAssetsDestPath": "./output_html/assets/"
+<h2 id="configuration-reference">Configuration Reference</h2>
+
+<p>Complete config.json with all options:</p>
+
+<pre><code class="language-json">{
+  &quot;filepath&quot;: {
+    &quot;sourceMDDir&quot;: &quot;./configurables/source_md&quot;,
+    &quot;destHtmlDir&quot;: &quot;./output_html&quot;,
+    &quot;templatePath&quot;: &quot;./configurables/templates&quot;,
+    &quot;sourceStaticFiles&quot;: &quot;./configurables/static&quot;,
+    &quot;mdAssetsSourcePath&quot;: &quot;./configurables/source_md/assets/&quot;,
+    &quot;mdAssetsDestPath&quot;: &quot;./output_html/assets/&quot;
   },
-  "indexHomepageHtml": {
-    "type": "section",  // or "page"
-    "name": "blog"      // section name or page filename
+  &quot;indexHomepageHtml&quot;: {
+    &quot;type&quot;: &quot;section&quot;,
+    &quot;name&quot;: &quot;blog&quot;
   },
-  "logger": {
-    "filepath": "hanamark.logs",
-    "level": "debug"    // debug, info, warn, error
+  &quot;logger&quot;: {
+    &quot;filepath&quot;: &quot;hanamark.logs&quot;,
+    &quot;level&quot;: &quot;debug&quot;
   },
-  "rss": {
-    "isRssEnabled": true,
-    "title": "My Blog",
-    "link": "https://example.com",
-    "authorName": "Your Name",
-    "authorEmailID": "you@example.com",
-    "rssOutputName": "feed.xml"
+  &quot;rss&quot;: {
+    &quot;isRssEnabled&quot;: true,
+    &quot;title&quot;: &quot;My Blog&quot;,
+    &quot;link&quot;: &quot;https://example.com&quot;,
+    &quot;authorName&quot;: &quot;Your Name&quot;,
+    &quot;authorEmailID&quot;: &quot;you@example.com&quot;,
+    &quot;rssOutputName&quot;: &quot;feed.xml&quot;
   },
-  "tags": true,
-  "sortFilesByCreatedOn": true,
-  "servePort": "3000"
-}</pre>
-      </div>
-    </div>
-  </div>
-
-  <div class="llm-section">
-    <h2>Full Documentation</h2>
-    <p>Complete README with all details:</p>
-    <div class="llm-copy-block">
-      <div class="llm-copy-header">
-        <span class="llm-copy-title">Complete README.md</span>
-        <button class="llm-copy-btn" onclick="copyToClipboard(this, 'full-readme')">Copy to Clipboard</button>
-      </div>
-      <div class="llm-copy-content llm-full-doc">
-        <pre id="full-readme"># Hanamark
-
-**Hanamark** is a fast, minimal, and flexible static site generator written in Go. I wrote this engine for my personal blog [thisisvoid.in](https://www.thisisvoid.in) and now putting it out so that anyone can quickly build and maintain their static sites.
-
-> Write in Markdown. Style with templates. Deploy anywhere.
-
----
-
-## Features
-
-- **Markdown to HTML** - Write content in Markdown, get beautiful HTML
-- **Front Matter Support** - YAML front matter for metadata (tags, dates, custom templates, draft mode)
-- **Template Inheritance** - Base templates with partials (`_base.html`, `_header.html`, `_footer.html`)
-- **Automatic List Pages** - Sections automatically generate index pages with links to content
-- **Tag System** - Organize content with tags, auto-generated tag pages
-- **RSS Feed** - Built-in RSS  feed generation
-- **Draft Mode** - Mark posts as drafts to exclude from build
-- **Flexible Date Parsing** - Supports multiple date formats
-- **Static Assets** - CSS, images, and other static files copied automatically
-- **Local Development Server** - Built-in server for previewing your site
-- **Zero JavaScript by Default** - Pure static HTML output, but you can add JavaScript via templates
-
----
-
-## Quick Start
-
-```bash
-# 1. Download the binary or build hanamark binary
-go build -o hanamark .
-
-# 2. Initialize a new project
-./hanamark init
-
-# 3. Build the site
-./hanamark build
-
-# 4. Preview locally
-./hanamark serve
-```
-
-By default (can be configured in config.json) if served,
-
- Your site will be available at
-
-`http://localhost:3000` default or whatever port configured in config.json
-
----
-
-## Installation
-
-### Download Binary (Recommended)
-
-Download the pre-built binary for your platform from the [GitHub Releases](https://github.com/thevoid12/hanamark/releases) page.
-
-| Platform | Download |
-| --- | --- |
-| macOS (Intel) | `hanamark_Darwin_x86_64.tar.gz` |
-| macOS (Apple Silicon) | `hanamark_Darwin_arm64.tar.gz` |
-| Linux (64-bit) | `hanamark_Linux_x86_64.tar.gz` |
-| Linux (ARM 64-bit) | `hanamark_Linux_arm64.tar.gz` |
-| Windows (64-bit) | `hanamark_Windows_x86_64.zip` |
-| Windows (ARM 64-bit) | `hanamark_Windows_arm64.zip` |
-
-download the binary and use gunzip to extract the tarball and then get the executable
-
-```bash
-# Example: Download and make executable (macOS/Linux)
-chmod +x hanamark-darwin-arm64
-mv hanamark-darwin-arm64 hanamark
-
-# Run
-./hanamark init
-```
-
-> **No dependencies required** - the binary is self-contained.
-
-### From Source (Optional)
-
-Only needed if you want to build from source or contribute to development.
-
-**Prerequisites:** Go 1.20 or higher
-
-```bash
-git clone https://github.com/thevoid12/hanamark.git
-cd hanamark
-go build -o hanamark .
-```
-
-Or using Make:
-
-```bash
-make build
-```
-
----
-
-## Project Structure
-
-After running `hanamark init`, you get the following structure:
-
-```
-your-project/
-├── configurables/
-│   ├── config.json              # Main configuration file
-│   ├── source_md/               # Your Markdown content
-│   │   ├── index.md             # Homepage (optional)
-│   │   ├── about.md             # Single page example
-│   │   ├── blog/                # Section with multiple posts
-│   │   │   ├── _index.md        # Section configuration
-│   │   │   ├── post-1.md
-│   │   │   └── post-2.md
-│   │   └── assets/              # Images used in markdown
-│   │       └── image.png
-│   ├── static/                  # Static files (CSS, favicon, etc.)
-│   │   ├── css/
-│   │   │   └── styles.css
-│   │   ├── images/
-│   │   └── favicon.ico
-│   └── templates/               # HTML templates
-│       ├── _base.html           # Base layout template
-│       ├── _header.html         # Header partial
-│       ├── _footer.html         # Footer partial
-│       ├── single.html          # Default single page template
-│       ├── blog/
-│       │   ├── single.html      # Blog post template
-│       │   └── list.html        # Blog listing template
-│       └── tags/
-│           ├── single.html      # All tags page
-│           └── list.html        # Individual tag page
-└── output_html/                 # Generated site (after build)
-```
-
----
-
-## Mandatory Requirements
-
-These are **required** for Hanamark to work correctly:
-
-### Required Directory Structure
-
-```
-configurables/
-├── config.json                    # REQUIRED
-├── source_md/                     # REQUIRED
-│   └── assets/                    # REQUIRED - All markdown images here
-├── static/                        # REQUIRED
-│   └── css/
-│       └── styles.css             # REQUIRED - This exact path
-└── templates/                     # REQUIRED
-    ├── _base.html                 # REQUIRED
-    ├── _header.html               # REQUIRED (can be empty)
-    ├── _footer.html               # REQUIRED (can be empty)
-    └── single.html                # REQUIRED
-```
-
-### System Files (Underscore Prefix)
-
-Files starting with `_` are **system files** with special meaning:
-
-| File | Location | Purpose | Required? |
-|------|----------|---------|-----------|
-| `_base.html` | `templates/` | Master layout template | **Yes** |
-| `_header.html` | `templates/` | Header partial | **Yes** (can be empty) |
-| `_footer.html` | `templates/` | Footer partial | **Yes** (can be empty) |
-| `_index.html` | `templates/` | Custom homepage template | No |
-| `_index.md` | Any content folder | Section config for list pages | No (but required for lists) |
-
-### Rules and Constraints
-
-**What You CAN Do:**
-- Add JavaScript via templates (analytics, libraries, etc.)
-- Add external CSS (CDN stylesheets)
-- Create custom templates
-- Nest content folders deeply
-- Use custom front matter fields
-- Override templates per-page
-- Empty `_header.html` and `_footer.html`
-
-**What You CANNOT Do:**
-- Change static path (must be `/static/`)
-- Change CSS path (must be `static/css/styles.css`)
-- Delete system files (`_base.html`, `_header.html`, `_footer.html`)
-- Use RSS on single pages (only on sections)
-- Skip `_index.md` for list pages
-- Use relative paths for static assets
-
----
-
-## Configuration
-
-Configuration is stored in `./configurables/config.json`.
-
-### Complete Configuration Example
-
-```json
-{
-  "filepath": {
-    "sourceMDDir": "./configurables/source_md",
-    "destHtmlDir": "./output_html",
-    "templatePath": "./configurables/templates",
-    "sourceStaticFiles": "./configurables/static",
-    "mdAssetsSourcePath": "./configurables/source_md/assets/",
-    "mdAssetsDestPath": "./output_html/assets/"
-  },
-  "indexHomepageHtml": {
-    "type": "section",
-    "name": "blog"
-  },
-  "logger": {
-    "filepath": "hanamark.logs",
-    "level": "debug"
-  },
-  "rss": {
-    "isRssEnabled": true,
-    "title": "My Blog",
-    "link": "https://example.com",
-    "authorName": "Your Name",
-    "authorEmailID": "you@example.com",
-    "rssOutputName": "feed.xml"
-  },
-  "tags": true,
-  "sortFilesByCreatedOn": true,
-  "servePort": "3000"
+  &quot;tags&quot;: true,
+  &quot;sortFilesByCreatedOn&quot;: true,
+  &quot;servePort&quot;: &quot;3000&quot;
 }
-```
+</code></pre>
+
+<h2 id="full-documentation">Full Documentation</h2>
+
+<p>Complete README with all details - see the full <a href="https://github.com/thevoid12/hanamark" target="_blank">Hanamark README</a> for comprehensive documentation including:</p>
+
+<ul>
+<li>Features</li>
+<li>Installation (Download binary or build from source)</li>
+<li>Quick Start Guide</li>
+<li>Project Structure</li>
+<li>Mandatory Requirements</li>
+<li>Configuration Options</li>
+<li>Content Organization</li>
+<li>Front Matter Fields</li>
+<li>Templating System</li>
+<li>Tags System</li>
+<li>Assets and Static Files</li>
+<li>RSS Feed Generation</li>
+<li>CLI Commands</li>
+<li>Examples</li>
+</ul>
+
+<p>For the complete documentation, visit the <a href="https://github.com/thevoid12/hanamark" target="_blank">Hanamark GitHub repository</a>.</p>
 
-### File Paths
-
-| Key | Description | Example |
-|-----|-------------|---------|
-| `sourceMDDir` | Directory containing Markdown source files | `./configurables/source_md` |
-| `destHtmlDir` | Output directory for generated HTML | `./output_html` |
-| `templatePath` | Directory containing HTML templates | `./configurables/templates` |
-| `sourceStaticFiles` | Static files (CSS, JS, images) to copy | `./configurables/static` |
-| `mdAssetsSourcePath` | Assets referenced in Markdown files | `./configurables/source_md/assets/` |
-| `mdAssetsDestPath` | Destination for Markdown assets | `./output_html/assets/` |
-
-### Index Homepage
-
-Controls what content appears on the root `index.html`:
-
-```json
-"indexHomepageHtml": {
-  "type": "section",
-  "name": "blog"
-}
-```
-
-| Type | Behavior |
-|------|----------|
-| `section` | Uses the specified section's list as the homepage |
-| `page` | Copies the specified page as `index.html` |
-
-**Use blog section as homepage:**
-```json
-"indexHomepageHtml": {
-  "type": "section",
-  "name": "blog"
-}
-```
-This uses `list.html` -> generates `blog/index.html` with list of posts -> copies as root `index.html`
-
-**Nested Folder Example:**
-```
-source_md/
-└── blog/
-    ├── _index.md
-    ├── post-1.md
-    └── tutorials/           # Nested folder
-        ├── _index.md
-        └── go-basics.md
-```
-
-For nested folders, use path from source_md root:
-```json
-"indexHomepageHtml": {
-  "type": "section",
-  "name": "blog/tutorials"
-}
-```
-
-**How List Pages Work:**
-```
-blog/
-├── _index.md      -> Uses list.html   -> blog/index.html (shows links to all posts)
-├── post-1.md      -> Uses single.html -> blog/post-1.html
-└── post-2.md      -> Uses single.html -> blog/post-2.html
-```
-
-> **Important:** If there is no `_index.md` in a folder, no list page will be generated.
-
-### RSS Feed
-
-```json
-"rss": {
-  "isRssEnabled": true,
-  "title": "My Blog",
-  "link": "https://example.com",
-  "authorName": "Your Name",
-  "authorEmailID": "you@example.com",
-  "rssOutputName": "feed.xml"
-}
-```
-
-| Key | Description | Required |
-|-----|-------------|----------|
-| `isRssEnabled` | Enable/disable RSS generation | Yes |
-| `title` | Feed title | Yes |
-| `link` | Your site's base URL | Yes |
-| `authorName` | Author name for feed items | No |
-| `authorEmailID` | Author email | No |
-| `rssOutputName` | Output filename (default: `feed.xml`) | No |
-
-### Logger
-
-```json
-"logger": {
-  "filepath": "hanamark.logs",
-  "level": "debug"
-}
-```
-
-| Level | Description |
-|-------|-------------|
-| `debug` | Verbose logging for development |
-| `info` | General information |
-| `warn` | Warnings only |
-| `error` | Errors only |
-
-### Other Options
-
-| Key | Type | Description |
-|-----|------|-------------|
-| `tags` | boolean | Enable tag system |
-| `sortFilesByCreatedOn` | boolean | Sort lists by `created_on` date (true) or `updated` date (false) |
-| `servePort` | string | Port for local development server (default: `3000`) |
-
----
-
-## Content Organization
-
-### Directory Structure
-
-Hanamark mirrors your source directory structure in the output:
-
-```
-source_md/                    output_html/
-├── about.md            ->    ├── about.html
-├── projects.md         ->    ├── projects.html
-└── blog/                     └── blog/
-    ├── _index.md       ->        ├── index.html (list page)
-    ├── post-1.md       ->        ├── post-1.html
-    └── post-2.md       ->        └── post-2.html
-```
-
-### Single Pages
-
-Any `.md` file (except `_index.md`) becomes a single HTML page:
-
-```markdown
----
-created_on: 2024-01-15
-tags: ["about", "personal"]
----
-
-# About Me
-
-This is my about page content...
-```
-
-**Output:** `about.html`
-
-### List Pages (Sections)
-
-Directories with a `_index.md` file become **sections** with automatic list pages if you want list page it is mandatory to have _index.md in that folder:
-
-```
-blog/
-├── _index.md           # Section configuration
-├── post-1.md           # Blog post
-├── post-2.md           # Blog post
-└── nested/             # Nested section
-    ├── _index.md
-    └── deep-post.md
-```
-
-The `_index.md` file configures the section:
-
-```markdown
----
-rss: true
-template: "blog/custom_list_template.html"
----
-```
-
-**Output:** `blog/index.html` with links to all posts in the section.
-
----
-
-## Front Matter
-
-Front matter is YAML metadata at the top of Markdown files, enclosed by `---`:
-
-```markdown
----
-created_on: 2024-01-15
-tags: ["go", "tutorial"]
-draft: false
-template: "custom_template.html"
-rss: true
----
-
-# Your Content Here
-```
-
-### Supported Fields
-
-| Field | Type | Description | Required |
-|-------|------|-------------|----------|
-| `created_on` | string | Creation date | **Yes** (for single pages) |
-| `tags` | array | List of tags | No |
-| `draft` | boolean | If `true`, page is excluded from build | No |
-| `template` | string | Custom template path (relative to templates dir) | No |
-| `rss` | boolean | Include section in RSS feed (for `_index.md` only) | No |
-
-### Date Formats
-
-Hanamark supports multiple date formats:
-
-```yaml
-# ISO 8601
-created_on: 2024-01-15
-created_on: 2024-01-15T10:30:00Z
-created_on: 2024-01-15 10:30:45
-
-# Slash-separated
-created_on: 2024/01/15
-
-# Human-friendly
-created_on: 15-01-2024
-created_on: 15/01/2024
-created_on: 15 Jan 2024
-created_on: 15 January 2024
-
-# With time
-created_on: 15 Jan 2024 10:30
-created_on: 15 January 2024 10:30
-
-# Compact
-created_on: 20240115
-```
-
----
-
-## Templating
-
-Hanamark uses Go's `html/template` package with a hierarchical template system.
-
-### Understanding single.html vs list.html
-
-| Template | What It Does | When It's Used |
-|----------|--------------|----------------|
-| **`single.html`** | Renders **individual content pages** | Used for every `.md` file |
-| **`list.html`** | Renders **index/listing pages** with links to content | Used for sections with `_index.md` |
-
-**Think of it this way:**
-- `single.html` = Template for **reading a single article/page**
-- `list.html` = Template for **browsing a collection of articles**
-
-### The _base.html Template (Global Layout)
-
-`_base.html` is the **master template** that wraps every page. It is **mandatory**. Use it for:
-- HTML document structure
-- Global CSS/JS
-- Meta tags, favicon
-- Common layout (header, footer)
-
-**Why _base.html is Mandatory:**
-1. Consistent structure across all pages
-2. DRY principle - write common elements once
-3. Template inheritance - content injects into `&#123;&#123; block "main" . &#125;&#125;`
-4. Partials support - header/footer included automatically
-
-**Required Structure:**
-```html
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;link rel="stylesheet" href="/static/css/styles.css"&gt;
-  &lt;title&gt;&#123;&#123; .PageTitle &#125;&#125;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &#123;&#123; template "_header.html" &#125;&#125;
-  &#123;&#123; block "main" . &#125;&#125;&#123;&#123; end &#125;&#125;
-  &#123;&#123; template "_footer.html" &#125;&#125;
-&lt;/body&gt;
-&lt;/html&gt;
-```
-
-### Adding JavaScript to Templates
-
-While Hanamark generates pure static HTML by default, you can add JavaScript via templates:
-
-```html
-&lt;!-- In _base.html --&gt;
-&lt;head&gt;
-  &lt;!-- External JS library --&gt;
-  &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &#123;&#123; template "_header.html" &#125;&#125;
-  &#123;&#123; block "main" . &#125;&#125;&#123;&#123; end &#125;&#125;
-  &#123;&#123; template "_footer.html" &#125;&#125;
-
-  &lt;!-- Custom JavaScript --&gt;
-  &lt;script&gt;
-    hljs.highlightAll();
-  &lt;/script&gt;
-&lt;/body&gt;
-```
-
-> **Note:** You can add any JavaScript - analytics, interactive features, external libraries, etc.
-
-### System Files (Underscore-Prefixed Files)
-
-Files starting with `_` are **system files** used by Hanamark. **Do not delete them.**
-
-| File | Purpose | Can You Empty It? |
-|------|---------|-------------------|
-| `_base.html` | Base layout wrapper for all pages | No - required |
-| `_header.html` | Site header/navigation | Yes |
-| `_footer.html` | Site footer | Yes |
-| `_index.html` | Custom homepage template (optional) | Optional |
-| `_index.md` | Section configuration (in content folders) | Yes, but keep the file |
-
-### Template Variables
-
-#### Single Page Variables
-
-| Variable | Type | Description |
-|----------|------|-------------|
-| `.GenHtml` | string | Rendered HTML content from Markdown |
-| `.PageTitle` | string | First heading extracted from content |
-| `.PageName` | string | Page name |
-| `.CreatedDate` | time.Time | Creation date from front matter |
-| `.UpdatedDate` | time.Time | Last modification time of file |
-| `.DestPageDir` | string | Destination path |
-| `.ReadTime` | int | Estimated reading time |
-| `.FrontMatterMap` | map | All front matter as key-value pairs |
-| `.Tags` | []*Tag | List of tags |
-
-#### List Page Variables
-
-| Variable | Type | Description |
-|----------|------|-------------|
-| `.PageTitle` | string | Section/folder name |
-| `.List` | []*PageMeta | Array of pages in section |
-
----
-
-## Tags
-
-Enable tags in config:
-
-```json
-{
-  "tags": true
-}
-```
-
-Add tags to content:
-
-```markdown
----
-created_on: 2024-01-15
-tags: ["go", "tutorial", "beginner"]
----
-```
-
-Hanamark generates:
-
-- `output_html/tags/tags.html` - List of all tags
-- `output_html/tags/go.html` - Posts tagged "go"
-- `output_html/tags/tutorial.html` - Posts tagged "tutorial"
-
----
-
-## Assets and Static Files
-
-### Static Files
-
-Files in `sourceStaticFiles` are copied to `destHtmlDir/static/`. All static assets are served from `/static/`.
-
-| Asset Type | Path |
-|------------|------|
-| CSS | `/static/css/styles.css` |
-| Favicon | `/static/favicon.ico` |
-| Images | `/static/images/your-image.png` |
-| JavaScript | `/static/js/script.js` |
-
-Reference in templates:
-
-```html
-<link rel="icon" href="/static/favicon.ico">
-<link rel="stylesheet" href="/static/css/styles.css">
-<img src="/static/images/logo.png" alt="Logo">
-```
-
-### Markdown Assets
-
-Images referenced in Markdown are copied from `mdAssetsSourcePath` to `mdAssetsDestPath`:
-
-```markdown
-![My Image](./assets/photo.png)
-```
-
----
-
-## RSS Feed Generation
-
-> **Important:** RSS feeds can **only** be enabled on **list pages** (sections).
-
-### Setup Steps
-
-1. Enable RSS in config:
-
-```json
-"rss": {
-  "isRssEnabled": true,
-  "title": "My Blog",
-  "link": "https://example.com",
-  "authorName": "Your Name",
-  "rssOutputName": "feed.xml"
-}
-```
-
-2. Mark sections for RSS in `_index.md`:
-
-```markdown
----
-rss: true
----
-```
-
-3. Build your site - `feed.xml` is generated in the output root.
-
----
-
-## Commands
-
-### `hanamark init`
-
-Initialize a new project in the current directory.
-
-### `hanamark build`
-
-Build the static site:
-- Parses all Markdown files
-- Applies templates
-- Copies static assets
-- Generates tag pages
-- Creates RSS feed (if enabled)
-- Outputs to `destHtmlDir`
-
-### `hanamark serve`
-
-Start a local development server at `http://localhost:3000` (or configured port).
-
-### `hanamark help`
-
-Display help information.
-
-### `hanamark -version`
-
-Show version.
-
----
-
-## Examples
-
-### Basic Blog Post
-
-```markdown
----
-created_on: 2024-01-15
-tags: ["introduction", "personal"]
----
-
-# My First Post
-
-Welcome to my blog! This is my first post using **Hanamark**.
-```
-
-### Draft Post
-
-```markdown
----
-created_on: 2024-01-20
-draft: true
----
-
-# Work in Progress
-
-This post won't appear in the build.
-```
-
-### Custom Template Post
-
-```markdown
----
-created_on: 2024-01-25
-template: "blog/featured_post.html"
-tags: ["featured"]
----
-
-# Featured Article
-
-This post uses a special template.
-```
-
-### Section Configuration
-
-`source_md/blog/_index.md`:
-
-```markdown
----
-rss: true
-template: "blog/custom_list_template.html"
----
-```
-
----
-
-## Building from Source
-
-### Prerequisites
-
-- Go 1.20+
-- Make (optional)
-
-### Build
-
-```bash
-git clone https://github.com/thevoid12/hanamark.git
-cd hanamark
-go build -o hanamark .
-```
-
-Or using Make:
-
-```bash
-make build
-```
-
----
-
-**Built with Hanamark** - A static site generator that gets out of your way.</pre>
-      </div>
-    </div>
-  </div>
 </article>
-
-<script>
-function copyToClipboard(button, elementId) {
-  var text = document.getElementById(elementId).textContent;
-  navigator.clipboard.writeText(text).then(function() {
-    button.textContent = 'Copied!';
-    button.classList.add('copied');
-    setTimeout(function() {
-      button.textContent = 'Copy to Clipboard';
-      button.classList.remove('copied');
-    }, 2000);
-  }).catch(function(err) {
-    console.error('Failed to copy: ', err);
-  });
-}
-</script>
 
       </div>
     </main>
