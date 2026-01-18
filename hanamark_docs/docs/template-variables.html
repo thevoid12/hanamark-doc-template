@@ -195,6 +195,19 @@
 </tbody>
 </table>
 
+<h3 id="accessing-frontmattermap">Accessing FrontMatterMap</h3>
+
+<p>Custom frontmatter fields are accessible via <code>.FrontMatterMap</code> (keys are lowercased):</p>
+
+<pre><code class="language-html">{{- if .FrontMatterMap.description -}}
+  &lt;meta name=&quot;description&quot; content=&quot;{{ .FrontMatterMap.description }}&quot;&gt;
+{{- end -}}
+
+{{- if .FrontMatterMap.ogimage -}}
+  &lt;meta property=&quot;og:image&quot; content=&quot;{{ .FrontMatterMap.ogimage }}&quot;&gt;
+{{- end -}}
+</code></pre>
+
 <h3 id="example-usage">Example Usage</h3>
 
 <pre><code class="language-html">&lt;article&gt;
@@ -352,6 +365,64 @@
     &lt;li&gt;&lt;a href=&quot;{{ .FileDestPath }}&quot;&gt;{{ .FileHeading }}&lt;/a&gt;&lt;/li&gt;
   {{ end }}
 &lt;/ul&gt;
+</code></pre>
+
+<h2 id="template-functions">Template Functions</h2>
+
+<p>Custom functions available in all templates:</p>
+
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td>Get value from config.json</td>
+<td><code>{{ config &quot;site.title&quot; }}</code></td>
+</tr>
+
+<tr>
+<td><code>hasPrefix</code></td>
+<td>Check if string starts with prefix</td>
+<td><code>{{ if hasPrefix $url &quot;http&quot; }}</code></td>
+</tr>
+
+<tr>
+<td><code>urlJoin</code></td>
+<td>Join URL parts safely</td>
+<td><code>{{ urlJoin $baseUrl $path }}</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="config-function-examples">Config Function Examples</h3>
+
+<pre><code class="language-html">{{- $siteTitle := config &quot;site.title&quot; -}}
+{{- $siteUrl := config &quot;site.url&quot; -}}
+{{- $ogEnabled := config &quot;opengraph.enabled&quot; -}}
+
+{{ if $ogEnabled }}
+  &lt;meta property=&quot;og:site_name&quot; content=&quot;{{ $siteTitle }}&quot;&gt;
+{{ end }}
+</code></pre>
+
+<h3 id="url-handling-example">URL Handling Example</h3>
+
+<pre><code class="language-html">{{- $baseUrl := config &quot;site.url&quot; -}}
+{{- $image := .FrontMatterMap.ogimage -}}
+
+&lt;!-- Handle both relative and absolute URLs --&gt;
+{{ if hasPrefix $image &quot;http&quot; }}
+  &lt;meta property=&quot;og:image&quot; content=&quot;{{ $image }}&quot;&gt;
+{{ else }}
+  &lt;meta property=&quot;og:image&quot; content=&quot;{{ urlJoin $baseUrl $image }}&quot;&gt;
+{{ end }}
 </code></pre>
 
 <h2 id="date-formatting">Date Formatting</h2>
